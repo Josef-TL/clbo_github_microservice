@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_767b005e04424f01b9d8c0c78b3a1b03 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_fa3cab94a8984e47ac91e4bb88293eab }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_247016bc99284fdea45f312b837371a0 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_d3c7bba8a6a14565bf490d968256176c }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_767b005e04424f01b9d8c0c78b3a1b03 }}/clbo-github-microservices:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_247016bc99284fdea45f312b837371a0 }}/clbo-github-microservice:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'clbo-joto-github-microservice'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_aa5da8c2dc5244859333f14f29813d10 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_767b005e04424f01b9d8c0c78b3a1b03 }}/clbo-github-microservices:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_329ca3bb15984068a61dd4d2301664bb }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_247016bc99284fdea45f312b837371a0 }}/clbo-github-microservice:${{ github.sha }}'
